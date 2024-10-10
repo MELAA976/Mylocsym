@@ -1,0 +1,8 @@
+.objetDescribe__img{
+    width: 300px;
+    height: 400px;
+}
+
+.objetDescribe__img > img{
+    object-fit: contain;
+}

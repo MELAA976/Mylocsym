@@ -3,18 +3,23 @@
 {% block title %}Hello ObjetController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="objet">
+     {% for objet in allObjets %}
+       <div class="card cart" style="width: 18rem;">
+  <img src= "{{ asset('imgObjet/' ~ objet.image )}}" class="card-img-top" alt="...">
+  <div class="card-body describe">
+  <h3>{{objet.nomObjet}}</h3>
+    <p class="card-text">
+        {{objet.description}}
+    </p>
+    <button class="btn btn-primary" type="submit">
+        {# <a href="/objet/{{objet.id}}">Voir +</a> #}
+        <a href={{path('app_objetItem', {'id': objet.id })}}>Voir +</a>
+    </button>
+  </div>
+</div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/laragon/www/mylocsym/mylocsymfo/src/Controller/ObjetController.php</code></li>
-        <li>Your template at <code>C:/laragon/www/mylocsym/mylocsymfo/templates/objet/index.html.twig</code></li>
-    </ul>
+    {% endfor %} 
 </div>
 {% endblock %}
