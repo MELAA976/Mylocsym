@@ -1,25 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ObjetController!{% endblock %}
+{% block title %}Objet index{% endblock %}
 
 {% block body %}
+    <h1>Objet index</h1>
 
-<div class="objet">
-     {% for objet in allObjets %}
-       <div class="card cart" style="width: 18rem;">
-  <img src= "{{ asset('imgObjet/' ~ objet.image )}}" class="card-img-top" alt="...">
-  <div class="card-body describe">
-  <h3>{{objet.nomObjet}}</h3>
-    <p class="card-text">
-        {{objet.description}}
-    </p>
-    <button class="btn btn-primary" type="submit">
-        {# <a href="/objet/{{objet.id}}">Voir +</a> #}
-        <a href={{path('app_objetItem', {'id': objet.id })}}>Voir +</a>
-    </button>
-  </div>
-</div>
+        {% for objet in objets %}
+            <div class="card" style="width: 18rem;">
+                <img src={{ asset('imgObjet/' ~ objet.image) }} class="card-img-top" alt="...">
+                <div class="card-body">
+                <h1>{{ objet.nomObjet }}</h1>
+                <p class="card-text">{{ objet.description }}</p>
+                </div>
+                <button class="btn"><a href={{ path('app_objet_show', {'id': objet.id}) }}>voir l'objet</a></button>
+            </div>
 
-    {% endfor %} 
-</div>
+        {% else %}
+            <h1>aucun objet trouver</h1>
+        {% endfor %}
+       
+
+    {% if is_granted('ROLE_USER')%}
+            <a href="{{ path('app_objet_new') }}">Create new</a>
+        {% endif %}
 {% endblock %}

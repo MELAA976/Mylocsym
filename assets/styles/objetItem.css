@@ -1,8 +1,36 @@
+
+.objetDescribe{
+    width: 100%;
+    /*height: 100vh;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.objetDescribe > h1{
+    padding: 40px;
+}
+
+
 .objetDescribe__img{
-    width: 300px;
+    width: 600px;
     height: 400px;
 }
 
 .objetDescribe__img > img{
     object-fit: contain;
+    max-width: 100%;
 }
+
+.objetDescribe__desc{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.objetDescribe__desc > h2{
+    padding: 20px;
+
+} 

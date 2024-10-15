@@ -31,11 +31,17 @@
           <a class="nav-link" aria-current="page" href={{path('app_home')}}>Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href={{path('app_objet')}}>Les Objets</a>
+          <a class="nav-link" href={{path('app_objet_index')}}>Les Objets</a>
         </li>
       </ul>
+      
       <button class="btn btn-secondary">
-      <a href='/login'>Connexion</a>
+      {% if app.user %}
+        <a href='/logout'>Deconnexion</a>
+        {% else %}
+        <a href='/login'>Connexion</a>
+      {% endif %}
+      
         
       </button>
     </div>
