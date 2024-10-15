@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ObjetRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -9,6 +10,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ObjetRepository::class)]
+#[ApiResource(normalizationContext: ['groupe' => ['product']])] //AJOUTER API RESOURCE ICI
 class Objet
 {
     #[ORM\Id]
@@ -46,7 +48,7 @@ class Objet
 
     #[ORM\ManyToOne(inversedBy: 'objet')]
     #[ORM\JoinColumn(nullable: false)]
-    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -141,6 +143,4 @@ class Objet
 
         return $this;
     }
-
-   
 }
