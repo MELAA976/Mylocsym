@@ -25,10 +25,13 @@ final class EmpruntController extends AbstractController
     #[Route('/new', name: 'app_emprunt_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $User = $this->getUser();
         $emprunt = new Emprunt();
-        $form = $this->createForm(EmpruntType::class, $emprunt);
-        $form->handleRequest($request);
 
+        $emprunt->setUtilisateur($User);
+        $form = $this->createForm(EmpruntType::class, $emprunt);
+
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($emprunt);
             $entityManager->flush();
@@ -71,7 +74,7 @@ final class EmpruntController extends AbstractController
     #[Route('/{id}', name: 'app_emprunt_delete', methods: ['POST'])]
     public function delete(Request $request, Emprunt $emprunt, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$emprunt->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $emprunt->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($emprunt);
             $entityManager->flush();
         }

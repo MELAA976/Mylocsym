@@ -21,10 +21,10 @@ class EmpruntType extends AbstractType
             ->add('dateDeFin', null, [
                 'widget' => 'single_text',
             ])
-            ->add('utilisateur', EntityType::class, [
+            /*->add('utilisateur', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'id',
-            ])
+            ])*/
             ->add('objet', EntityType::class, [
                 'class' => Objet::class,
                 'choice_label' => 'id',
