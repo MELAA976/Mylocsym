@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    <div>
+         {% for objet in user.objets %}
+            <div class="card" style="width: 18rem;">
+                 <img src={{ asset('imgObjet/' ~ objet.image) }} class="card-img-top" alt="...">
+                <div class="card-body">
+                <h1>{{ objet.nomObjet }}</h1>
+                <h2>{{ user.nom }} {{ user.prenom }}</h2>
+                <p class="card-text">{{ objet.description }}</p>
+                </div>
+                <button class="btn"><a href={{ path('app_objet_show', {'id': objet.id}) }}>voir l'objet</a></button>
+            </div>
+        {% endfor %} 
+    </div>
+{% endblock %}
